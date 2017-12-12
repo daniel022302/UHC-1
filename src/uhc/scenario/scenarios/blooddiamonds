@@ -1,0 +1,41 @@
+<?php
+//I tried my best,fix if theres an issue just suggesting
+
+
+namespace uhc\scenario\scenarios
+
+use uhc\UHC;
+use pocketmine\block\Block;
+use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\Listener;
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDamageByBlockEvent;
+use pocketmine\item\Item;
+use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat as T;
+use pocketmine\Player;
+use pocketmine\entity\Effect;
+
+class BloodDiamonds implements Scenario {
+
+    /**
+     * @param BlockBreakEvent $event
+     */    
+  public function onBreak(BlockBreakEvent $event){
+    $p = $event->getPlayer();
+  if($event->getBlock()->getId() == 56){
+         $p = $event->getPlayer();
+         $health = $p->getHealth();
+         $p->setHealth($health -1);
+         $p->sendPopup(T::RED . "ouch");
+       
+     }
+  }
+  /**
+  * @return string
+  */
+  public function getName() : string
+  {
+  return "BloodDiamonds";
+  }
+}
